@@ -1,9 +1,13 @@
 import { useState, useEffect } from "react";
 
 const Sequence = () => {
-    const [sequence, setSequence] = useState("");
+    const [sequence, setSequence] = useState(() => {
+        let storedSeq = localStorage.getItem("openSeq");
+        return storedSeq ? storedSeq : "";
+    });
     useEffect(() => {
-        return console.log(`Sequence edited to: ${sequence}`);
+        // console.log(`Sequence edited to: ${sequence}`);
+        localStorage.setItem("openSeq", sequence);
     }, [sequence]);
 
     return (
